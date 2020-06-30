@@ -5,8 +5,19 @@ import { SwitchTitle } from './SwitchTitle';
 
 export const ToggleContext = React.createContext<any>('');
 
+// const ToggleCosumer = (props: any): any => {
+//   <ToggleContext.Consumer>
+//     {(context) => {
+//       if (!context) {
+//         throw new Error('Error');
+//       }
+
+//       return props.children(context);
+//     }}
+//   </ToggleContext.Consumer>;
+// };
+
 const Toggle = ({ onToggle, children }: any) => {
-  //   console.log(children);
   const [on, setOn] = useState(false);
 
   const toggle = () => (

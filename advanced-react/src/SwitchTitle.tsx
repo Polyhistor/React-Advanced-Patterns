@@ -5,7 +5,15 @@ import { ToggleContext } from './Toggle';
 const SwitchTitle = ({ children }: any) => {
   return (
     <ToggleContext.Consumer>
-      {({ on }): any => on && children}
+      {(context): any => {
+        if (!context) {
+          throw new Error(
+            'Toggle compound components must be rendered within the toggle component'
+          );
+        }
+
+        return context.on ? children : null;
+      }}
     </ToggleContext.Consumer>
   );
 };
