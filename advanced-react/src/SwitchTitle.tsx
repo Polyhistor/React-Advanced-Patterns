@@ -6,12 +6,12 @@ const SwitchTitle = ({ children }: any) => {
   return (
     <ToggleContext.Consumer>
       {(context): any => {
-        if (!context) {
+        console.log(context);
+        if (context === undefined) {
           throw new Error(
-            'Toggle compound components must be rendered within the toggle component'
+            'Toggle compound components must be rendered within the toggle context'
           );
         }
-
         return context.on ? children : null;
       }}
     </ToggleContext.Consumer>
