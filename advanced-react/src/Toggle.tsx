@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 
 import { Switch } from './Switch';
+import { SwitchTitle } from './SwitchTitle';
+
+export const ToggleContext = React.createContext<any>('');
 
 const Toggle = ({ onToggle, children }: any) => {
-  console.log(children);
+  //   console.log(children);
   const [on, setOn] = useState(false);
 
   const toggle = () => (
@@ -13,19 +16,32 @@ const Toggle = ({ onToggle, children }: any) => {
     })()
   );
 
-  return React.Children.map(children, (childElement) =>
-    React.cloneElement(childElement, {
-      on,
-      toggle,
-    })
+  return (
+    <ToggleContext.Provider
+      value={{
+        on,
+        toggle,
+      }}
+    >
+      {children}
+    </ToggleContext.Provider>
   );
 };
 
 // extending our functional component object
-Toggle.On = ({ on, children }: any) => (on ? children : null);
-Toggle.Off = ({ on, children }: any) => (on ? null : children);
+Toggle.On = SwitchTitle;
+// Toggle.Off = SwitchTitle;
+
 Toggle.Button = ({ on, toggle, ...props }: any) => (
-  <Switch on={on} onClick={toggle} {...props}></Switch>
+  <ToggleContext.Consumer>
+    {(contextValue) => (
+      <Switch
+        on={contextValue.on}
+        onClick={contextValue.toggle}
+        {...props}
+      ></Switch>
+    )}
+  </ToggleContext.Consumer>
 );
 
 const Usage = ({
@@ -34,7 +50,7 @@ const Usage = ({
   return (
     <Toggle onToggle={onToggle}>
       <Toggle.On>The button is on</Toggle.On>
-      <Toggle.Off>The button is off</Toggle.Off>
+      {/* <Toggle.Off>The button is off</Toggle.Off> */}
       <Toggle.Button></Toggle.Button>
     </Toggle>
   );
