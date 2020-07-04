@@ -5,20 +5,35 @@ import { SwitchTitle } from './SwitchTitle';
 
 export const ToggleContext = React.createContext<any>('');
 
-const Toggle = ({ onToggle, children }: any) => {
-  const [on, setOn]: any = useState({
-    value: false,
-    toggle: (): any => (
-      setOn(!on.value),
-      () => {
-        onToggle(on.value);
-      }
-    ),
-  });
+const Toggle = ({ onToggle, children, render }: any) => {
+  const [on, setOn]: any = useState(false);
 
-  console.log(on.toggle);
+  const ToggleHandler = () => (
+    setOn(!on),
+    () => {
+      onToggle(!on);
+    }
+  );
 
-  return <ToggleContext.Provider value={on}>{children}</ToggleContext.Provider>;
+  const getStateAndHelpers = () => {
+    return { name: 'pouya', toggleProps: getToggleProps };
+  };
+
+  const getToggleProps = (props) => {
+    return {
+      'aria-pressed': on,
+      onClick: ToggleHandler,
+      ...props,
+    };
+  };
+
+  const renderUI = (on, toggleHandler) => (
+    <ToggleContext.Provider value={{ on, toggleHandler }}>
+      {children(getStateAndHelpers())}
+    </ToggleContext.Provider>
+  );
+
+  return renderUI(on, ToggleHandler);
 };
 
 // extending our functional component object
@@ -27,13 +42,26 @@ Toggle.Button = ToggleButton;
 
 const Usage = ({
   onToggle = (...args: any[]): void => console.log('onToggle', ...args),
+  onButtonClick = () => alert('onButtonClick'),
 }): any => {
   return (
     <Toggle onToggle={onToggle}>
-      <div>
-        <Toggle.On>The button is on</Toggle.On>
-      </div>
-      <Toggle.Button></Toggle.Button>
+      {({ name, toggleProps }) => {
+        console.log(toggleProps);
+        return (
+          <div>
+            <h1>{name}</h1>
+            <Toggle.On>The button is on</Toggle.On>
+            <Toggle.Button
+              {...toggleProps({
+                'aria-label': 'custom-button',
+                id: 'custom-button-id',
+                onClick: onButtonClick,
+              })}
+            ></Toggle.Button>
+          </div>
+        );
+      }}
     </Toggle>
   );
 };
