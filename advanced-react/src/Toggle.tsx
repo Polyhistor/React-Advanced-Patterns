@@ -8,6 +8,8 @@ export const ToggleContext = React.createContext<any>('');
 const Toggle = ({ onToggle, children, render }: any) => {
   const [on, setOn]: any = useState(false);
 
+  const callAll = (...fns) => (...args) => fns.forEach((fn) => fn && fn(args));
+
   const ToggleHandler = () => (
     setOn(!on),
     () => {
@@ -19,10 +21,10 @@ const Toggle = ({ onToggle, children, render }: any) => {
     return { name: 'pouya', toggleProps: getToggleProps };
   };
 
-  const getToggleProps = (props) => {
+  const getToggleProps = ({ onClick, ...props }) => {
     return {
       'aria-pressed': on,
-      onClick: ToggleHandler,
+      onClick: callAll(onClick, ToggleHandler),
       ...props,
     };
   };
@@ -47,7 +49,6 @@ const Usage = ({
   return (
     <Toggle onToggle={onToggle}>
       {({ name, toggleProps }) => {
-        console.log(toggleProps);
         return (
           <div>
             <h1>{name}</h1>

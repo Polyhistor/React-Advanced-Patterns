@@ -3,6 +3,7 @@ import React from 'react';
 
 const Switch = ({ on, className, ...rest }: any) => {
   console.log(rest);
+
   const btnClassName = [
     className,
     'toggle-btn',
