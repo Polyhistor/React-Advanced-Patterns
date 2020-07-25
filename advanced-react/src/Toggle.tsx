@@ -29,6 +29,8 @@ const Toggle = ({ onToggle, children, render }: any) => {
     };
   };
 
+  const resetSate = () => setOn(false);
+
   const renderUI = (on, toggleHandler) => (
     <ToggleContext.Provider value={{ on, toggleHandler }}>
       {children(getStateAndHelpers())}
