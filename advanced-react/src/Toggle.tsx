@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import { ToggleButton } from './ToggleButton';
 import { SwitchTitle } from './SwitchTitle';
 
