@@ -7,7 +7,6 @@ export const ToggleContext = React.createContext<any>('');
 const Toggle = ({ onToggle, children, render }: any) => {
   const [on, setOn]: any = useState(false);
 
-  // calling all the userse functions
   const callAll = (...fns) => (...args) => fns.forEach((fn) => fn && fn(args));
 
   const ToggleHandler = () => (
