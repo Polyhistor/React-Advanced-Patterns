@@ -19,7 +19,7 @@ const Switch = ({ on, className, ...rest }: any) => {
         type="checkbox"
         checked={on}
         onChange={() => {
-          // changing is handled by clicking the button
+         
         }}
       />
       <button className={btnClassName} aria-label="Toggle" {...rest} />
