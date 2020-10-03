@@ -28,7 +28,6 @@ const Toggle = ({ onToggle, children, render }: any) => {
     };
   };
 
-  // to be researched and removed
   // const resetSate = () => setOn(false);
 
   const renderUI = (on, toggleHandler) => (
