@@ -20,13 +20,13 @@ const Toggle = ({ onToggle, children, render }: any) => {
     return { name: 'pouya', toggleProps: getToggleProps };
   };
 
-  // const getToggleProps = ({ onClick, ...props }) => {
-  //   return {
-  //     'aria-pressed': on,
-  //     onClick: callAll(onClick, ToggleHandler),
-  //     ...props,
-  //   };
-  // };
+  const getToggleProps = ({ onClick, ...props }) => {
+    return {
+      'aria-pressed': on,
+      onClick: callAll(onClick, ToggleHandler),
+      ...props,
+    };
+  };
 
   // const resetSate = () => setOn(false);
 
