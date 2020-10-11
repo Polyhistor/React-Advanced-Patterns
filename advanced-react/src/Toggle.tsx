@@ -39,7 +39,6 @@ const Toggle = ({ onToggle, children, render }: any) => {
   return renderUI(on, ToggleHandler);
 };
 
-// extending our functional component object with other component
 Toggle.On = SwitchTitle;
 Toggle.Button = ToggleButton;
 
