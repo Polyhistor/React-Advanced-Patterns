@@ -2,7 +2,6 @@ import './switch.styles.css';
 import React from 'react';
 
 const Switch = ({ on, className, ...rest }: any) => {
-  console.log(rest);
 
   const btnClassName = [
     className,
@@ -22,7 +21,7 @@ const Switch = ({ on, className, ...rest }: any) => {
          
         }}
       />
-      <button className={btnClassName} aria-label="Toggle" {...rest} />
+      <button className={btnClassName} aria-label="Toggle" {...rest}/>
     </div>
   );
 };
