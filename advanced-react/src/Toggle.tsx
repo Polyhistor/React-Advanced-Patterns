@@ -15,6 +15,18 @@ const Toggle = ({
   const initialState = initialOnProps;
   const [timesClicked, setTimesClicked]: any = useState(0);
 
+  const internalSetState = (changes, callback) => {
+    setTimesClicked((prevState) => {
+      const changesObject =
+        typeof changes === 'function' ? changes(prevState) : changes;
+      const reducedChanges = toggleStateReducer(prevState, changesObject);
+      return reducedChanges;
+    }),  
+    
+    callback(),
+    
+  };
+
   const callAll = (...fns) => (...args) => {
     return fns.forEach((fn) => fn && fn(args));
   };
@@ -37,7 +49,9 @@ const Toggle = ({
 
   // setting the initial state which is false
   const resetState = () => (
-    setTimesClicked(0), setOn(initialState), onReset(on)
+    setTimesClicked(0), 
+    setOn(initialState), 
+    onReset(on)
   );
 
   const getStateAndHelpers = () => {
