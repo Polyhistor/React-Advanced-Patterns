@@ -1,4 +1,3 @@
-import './switch.styles.css';
 import React from 'react';
 
 const noop = () => {};

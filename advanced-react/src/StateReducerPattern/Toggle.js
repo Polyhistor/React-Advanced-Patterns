@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Switch from './switch';
+import Switch from './Switch';
 
 const actionTypes = {
   toggle: 'TOGGLE',
@@ -25,7 +24,7 @@ function toggleReducer(state, action) {
   }
 }
 
-function useToggle({ reducer = toggleReducer } = {}) {
+function useToggle({ reducer }) {
   const [{ on }, dispatch] = React.useReducer(reducer, { on: false });
 
   const toggle = () => dispatch({ type: actionTypes.toggle });
@@ -35,15 +34,15 @@ function useToggle({ reducer = toggleReducer } = {}) {
   return { on, toggle, setOn, setOff };
 }
 
-// export {useToggle, actionTypes, toggleReducer, actionTypes}
-
 function Toggle() {
   const [clicksSinceReset, setClicksSinceReset] = React.useState(0);
   const tooManyClicks = clicksSinceReset >= 4;
 
+  // this is the actual hook, our inversion of controll, that sits as an intermediary, and if 
   const { on, toggle, setOn, setOff } = useToggle({
     reducer(currentState, action) {
       const changes = toggleReducer(currentState, action);
+
       if (tooManyClicks && action.type === actionTypes.toggle) {
         // other changes are fine, but on needs to be unchanged
         return { ...changes, on: currentState.on };
@@ -72,8 +71,4 @@ function Toggle() {
   );
 }
 
-function App() {
-  return <Toggle />;
-}
-
-ReactDOM.render(<App />, document.getElementById('root'));
+export default Toggle;

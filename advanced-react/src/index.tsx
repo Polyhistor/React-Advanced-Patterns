@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import { ToggleReducer } from './StateReducerPattern/index';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {/* <App /> */}
+    {/* 
+    // @ts-ignore */}
+    <ToggleReducer />
   </React.StrictMode>,
   document.getElementById('root')
 );
