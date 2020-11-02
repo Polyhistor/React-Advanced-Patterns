@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Usage from './Toggle';
+import { Usage } from './ControlledComponents/Usage';
 
 function App() {
   return (

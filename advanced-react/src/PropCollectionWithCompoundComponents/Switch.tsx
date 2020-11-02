@@ -2,7 +2,6 @@ import './switch.styles.css';
 import React from 'react';
 
 const Switch = ({ on, className, ...rest }: any) => {
-
   const btnClassName = [
     className,
     'toggle-btn',
@@ -17,11 +16,9 @@ const Switch = ({ on, className, ...rest }: any) => {
         className="toggle-input"
         type="checkbox"
         checked={on}
-        onChange={() => {
-         
-        }}
+        onChange={() => {}}
       />
-      <button className={btnClassName} aria-label="Toggle" {...rest}/>
+      <button className={btnClassName} aria-label="Toggle" {...rest} />
     </div>
   );
 };
