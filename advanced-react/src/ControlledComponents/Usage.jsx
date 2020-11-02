@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { Toggle } from './Toggle';
 
 export const Usage = () => {
-  const [on, setOn] = useState(false);
+  const [bothOn, setBothOn] = useState(false);
   const handleToggle = () => {
-    setOn(true);
+    setBothOn(!bothOn);
   };
 
   return (
     <div>
-      <Toggle on={on} onToggle={handleToggle}></Toggle>
-      <Toggle on={on} onToggle={handleToggle}></Toggle>
+      <Toggle onProp={bothOn} onToggle={handleToggle}></Toggle>
+      <Toggle  onToggle={handleToggle}></Toggle>
     </div>
   );
 };
