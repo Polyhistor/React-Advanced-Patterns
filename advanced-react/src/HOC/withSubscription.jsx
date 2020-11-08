@@ -5,10 +5,15 @@ export const withSubscription = (WrappedComponent, data) => {
     console.log('HOC Wrapper');
   };
 
+  const arbitratyProps = {
+    methodA: () => <h2>arbitrary</h2>,
+  };
+
   return (
     <WrappedComponent
       data={data && data}
       onClick={clickHandler}
+      {...arbitratyProps}
     ></WrappedComponent>
   );
 };

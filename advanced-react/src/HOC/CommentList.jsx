@@ -1,6 +1,7 @@
 import React from 'react';
 
-export const CommentList = ({ data, onClick }) => {
+export const CommentList = ({ data, onClick, ...rest }) => {
+  console.log(rest);
   return (
     <>
       {data &&
