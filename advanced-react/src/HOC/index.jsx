@@ -8,7 +8,7 @@ export const HOCExample = () => {
   const { data } = useSWR('https://fakerapi.it/api/v1/images?_width=380');
   const [hocData, setHocData] = useState(data);
 
-  console.log(<CommentList></CommentList>);
+  // console.log(<CommentList></CommentList>);
 
   useEffect(() => {
     setHocData(data);
