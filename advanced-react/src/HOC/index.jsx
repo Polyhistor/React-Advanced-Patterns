@@ -8,6 +8,7 @@ export const HOCExample = () => {
   const { data } = useSWR('https://fakerapi.it/api/v1/images?_width=380');
   const [hocData, setHocData] = useState(data);
 
+  // to checkout the Fiber object just uncomment the code below
   // console.log(<CommentList></CommentList>);
 
   useEffect(() => {
