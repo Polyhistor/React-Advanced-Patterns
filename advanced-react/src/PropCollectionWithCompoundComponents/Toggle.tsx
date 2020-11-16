@@ -35,6 +35,7 @@ const Toggle = ({
   };
 
   // setting the initial state which is false
+
   const resetState = () => (
     setTimesClicked(0), setOn(initialState), onReset(on)
   );
